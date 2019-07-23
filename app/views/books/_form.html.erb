@@ -1,20 +1,24 @@
-
+<div class= "card-body">
 <%= simple_form_for(@book) do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :descr %>
-    <%= f.collection_select :author_id, Author.all, :id, :name, prompt: "Select the Author"%>
-    </br>
-    <%= f.file_field :image %>
+  
+    <%= f.input :title, placeholder: "Enter Title of Book" %>
+    <%= f.input :descr, placeholder: "Describe the Book" %>
     
+    <%= f.input :author_id, collection: Author.all, prompt:"Select an Author" %>
+   
+    <%= f.input :image, label:"Upload a Book Cover", as: :file %>
+    
+</div>
 
-  </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class = "card-footer" style="background-color: #b0e0e6;">
+    <%= f.button :submit, class:"btn-info" %>
+    <%= f.button :button, "Clear Form", type:"reset", class:"btn-secondary"%>
+    
   </div>
+ 
 <% end %>
 
